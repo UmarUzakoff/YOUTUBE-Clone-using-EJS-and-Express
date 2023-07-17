@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/images/title.png" />
+    <link
+      href="https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css"
+      rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/23e4f9af49.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    @import url("https://fonts.cdnfonts.com/css/youtube-sans");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style-type: none;
+      font-family: "YouTube Sans", sans-serif;
+    }
+    .container {
+      margin: 0 auto;
+      padding: 0;
+      max-width: 1540px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+    }
+    .label-check {
+      display: none;
+    }
+
+    /* Гамбургер иконка */
+    .hamburgerr-btn {
+      margin: 0 22px 0 17px;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .hamburgerr-btn span {
+      width: 20px;
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #222222;
+      transition: all 0.5s;
+    }
+
+    .hamburgerr-btn span:nth-of-type(2) {
+      top: calc(50% - 5px);
+    }
+    .hamburgerr-btn span:nth-of-type(3) {
+      top: calc(50% + 5px);
+    }
+
+    .hamburgerr-btn.active span:nth-of-type(1) {
+      display: none;
+    }
+    .hamburgerr-btn.active span:nth-of-type(2) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(45deg);
+    }
+    .hamburgerr-btn.active span:nth-of-type(3) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(-45deg);
+    }
+
+    .hamburgerr {
+      z-index: 30;
+      position: fixed;
+      top: 25px;
+      left: 45px;
+      width: 10%;
+      height: 40%;
+      border-radius: 12px;
+      box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.1);
+      background: #fff;
+      transform: translateX(-180%);
+      transition: transform 0.5s;
+    }
+
+    .hamburgerr.active {
+      transform: translateX(0);
+    }
+
+    .hamburgerr li {
+      list-style-type: none;
+    }
+
+    .hamburger-label {
+      width: 40px;
+      height: 22.5px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .hamburger-label div {
+      width: 25px;
+      height: 2px;
+      background-color: #282828;
+      position: absolute;
+    }
+
+    .line2 {
+      margin: 8px 0 0 0;
+    }
+
+    .line3 {
+      margin: 16px 0 0 0;
+    }
+
+    /* Hamburger Icon */
+    .menu-btn {
+      color: #282828;
+      margin-top: 7px;
+      margin-right: 10px;
+      width: 70px;
+      height: 80px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* Меняем гамбургер иконку, когда меню открыто */
+    .menu-btn.active span:nth-of-type(1) {
+      display: none;
+    }
+    .menu-btn.active span:nth-of-type(2) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(45deg);
+    }
+    .menu-btn.active span:nth-of-type(3) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(-45deg);
+    }
+
+    /* Menu which appears onclick */
+    .menu {
+      z-index: 30;
+      color: #282828;
+      position: fixed;
+      top: 20px;
+      right: 70px;
+      width: 15%;
+      height: 40%;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.1);
+      background: #fff;
+      transform: translateX(150%);
+      transition: transform 0.5s;
+    }
+    @media (max-width: 1200px) {
+      .menu {
+        width: 20%;
+        height: 35%;
+      }
+    }
+    @media (max-width: 1000px) {
+      .menu {
+        width: 25%;
+        height: 40%;
+      }
+    }
+    @media (max-width: 700px) {
+      .menu {
+        width: 30%;
+        height: 45%;
+      }
+    }
+    @media (max-width: 550px) {
+      .menu {
+        width: 35%;
+        height: 50%;
+      }
+    }
+    @media (max-width: 500px) {
+      .menu {
+        top: 10px;
+        right: 20px;
+        width: 40%;
+        height: 52%;
+      }
+    }
+    .menu.active {
+      transform: translateX(0);
+    }
+
+    .menu li {
+      list-style-type: none;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .button-17 {
+      align-items: center;
+      appearance: none;
+      background-color: #fff;
+      border-radius: 24px;
+      border-style: none;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+      box-sizing: border-box;
+      color: #3c4043;
+      cursor: pointer;
+      display: inline-flex;
+      fill: currentcolor;
+      font-family: "Google Sans", Roboto, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      height: 36px;
+      justify-content: center;
+      letter-spacing: 0.25px;
+      line-height: normal;
+      max-width: 100%;
+      overflow: visible;
+      padding: 2px 20px;
+      position: relative;
+      text-align: center;
+      text-transform: none;
+      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: auto;
+      will-change: transform, opacity;
+      z-index: 0;
+    }
+
+    .logout:hover {
+      background: #f6f9fe;
+      color: #ff0000;
+    }
+
+    .changeAvatar:hover {
+      color: #4285f4;
+    }
+
+    .button-17:active {
+      box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+        0 8px 12px 6px rgb(60 64 67 / 15%);
+      outline: none;
+    }
+
+    .button-17:focus {
+      outline: none;
+      border: 2px solid #4285f4;
+    }
+
+    .button-17:not(:disabled) {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):hover {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+    }
+
+    .button-17:not(:disabled):focus {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):active {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+        rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+    }
+
+    .button-17:disabled {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+    }
+    .logout,
+    .changeAvatar {
+      margin-top: 10px;
+      padding-left: 10px;
+      width: max-content;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .leftHeader {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .search {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .search__input {
+      font-family: inherit;
+      font-size: inherit;
+      background-color: #f4f2f2;
+      border: 1px solid #646464;
+      color: #646464;
+      padding: 0.7rem 1rem;
+      border-radius: 30px;
+      width: 40em;
+      transition: all ease-in-out 0.5s;
+      margin-right: -4.5rem;
+    }
+
+    .search__input:hover,
+    .search__input:focus {
+      box-shadow: 0 0 1em #00000013;
+    }
+
+    .search__input:focus {
+      outline: none;
+      background-color: #f0eeee;
+    }
+
+    .search__input::-webkit-input-placeholder {
+      color: #646464;
+      font-weight: 100;
+    }
+
+    .search__input:focus + .search__button {
+      background-color: #f0eeee;
+    }
+
+    .search__button {
+      padding-left: 10px;
+      height: 44px;
+      border-bottom: #fff;
+      border-right: #fff;
+      border-top: #fff;
+      background-color: #f4f2f2;
+    }
+
+    .search__button:hover {
+      opacity: 0.7;
+    }
+
+    .search__button:hover {
+      cursor: pointer;
+    }
+
+    .search__icon {
+      height: 0.6em;
+      width: 0.6em;
+    }
+
+    .middleHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .micro {
+      margin-bottom: 25px;
+    }
+    .notification {
+      margin-bottom: 3px;
+      background-color: transparent;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .notification .badge {
+      position: absolute;
+      font-size: 9px;
+      top: -2px;
+      right: 11px;
+      padding: 1px 6px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+    }
+
+    .profileNav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main .container {
+      display: flex;
+      flex-direction: row;
+      /* justify-content: center;
+      align-items: center; */
+    }
+    .recommendations {
+      margin-bottom: 20px;
+      margin-left: 70px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      margin-left: 7px;
+      width: 10%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: relative;
+      bottom: 50px;
+    }
+
+    .sidebar ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .sidebar li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .sidebar li:hover {
+      opacity: 0.3;
+    }
+
+    .sidebar span {
+      margin-top: 12px;
+      font-size: 10px;
+    }
+    .button-28 {
+      appearance: none;
+      background-color: transparent;
+      border: 2px solid #1a1a1a;
+      border-radius: 7px;
+      box-sizing: border-box;
+      color: #3b3b3b;
+      cursor: pointer;
+      font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      font-size: 16px;
+      font-weight: 600;
+      line-height: normal;
+      margin: 0;
+      min-height: 20px;
+      min-width: 0;
+      outline: none;
+      margin: 4px;
+      padding: 3px 7px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      will-change: transform;
+    }
+
+    .button-28:disabled {
+      pointer-events: none;
+    }
+
+    .button-28:hover {
+      color: #fff;
+      background-color: #1a1a1a;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: translateY(-2px);
+    }
+
+    .button-28:active {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+    .content {
+      background-color: #f9f9f9;
+      width: 100%;
+      height: 100%;
+      padding: 15px 15px;
+      border-top: 1px solid #ddd;
+      overflow-y: scroll;
+    }
+
+    .videos {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .video {
+      width: 270px;
+      margin-bottom: 30px;
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: 180px;
+    }
+
+    .thumbnail img {
+      object-fit: cover;
+      height: 94%;
+      width: 100%;
+    }
+    .author img {
+      object-fit: cover;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      margin-right: 10px;
+    }
+    .details {
+      display: flex;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title h3 {
+      color: rgb(3, 3, 3);
+      line-height: 18px;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .title a,
+    span {
+      text-decoration: none;
+      color: rgb(96, 96, 96);
+      font-size: 12px;
+    }
+
+    .postVideoBtn {
+      margin-bottom: 3px;
+      color: #282828;
+    }
+    .vid {
+      border-radius: 10px;
+    }
+    .videosContainer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+      gap: 20px;
+      justify-content: center;
+    }
+    .Btn {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition-duration: 0.3s;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+      background-color: rgb(255, 65, 65);
+    }
+
+    /* plus sign */
+    .sign {
+      width: 100%;
+      transition-duration: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sign svg {
+      width: 17px;
+    }
+
+    .sign svg path {
+      fill: white;
+    }
+    /* text */
+    .text {
+      position: absolute;
+      right: 0%;
+      width: 0%;
+      opacity: 0;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 600;
+      transition-duration: 0.3s;
+    }
+    /* hover effect on button width */
+    .Btn:hover {
+      width: 125px;
+      border-radius: 40px;
+      transition-duration: 0.3s;
+    }
+
+    .Btn:hover .sign {
+      width: 30%;
+      transition-duration: 0.3s;
+      padding-left: 20px;
+    }
+    /* hover effect button's text */
+    .Btn:hover .text {
+      opacity: 1;
+      width: 70%;
+      transition-duration: 0.3s;
+      padding-right: 10px;
+    }
+    /* button click effect*/
+    .Btn:active {
+      transform: translate(2px, 2px);
+    }
+
+    .button-4 {
+      appearance: none;
+      background-color: #fafbfc;
+      border: 1px solid rgba(27, 31, 35, 0.15);
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+        rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+      box-sizing: border-box;
+      color: #24292e;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      list-style: none;
+      width: 100%;
+      padding: 6px 16px;
+      position: relative;
+      transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: middle;
+      white-space: nowrap;
+      word-wrap: break-word;
+    }
+
+    .button-4:hover {
+      background-color: #f3f4f6;
+      text-decoration: none;
+      transition-duration: 0.1s;
+    }
+
+    .button-4:disabled {
+      background-color: #fafbfc;
+      border-color: rgba(27, 31, 35, 0.15);
+      color: #959da5;
+      cursor: default;
+    }
+
+    .button-4:active {
+      background-color: #edeff2;
+      box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+      transition: none 0s;
+    }
+
+    .button-4:focus {
+      outline: 1px transparent;
+    }
+
+    .button-4:before {
+      display: none;
+    }
+
+    .button-4:-webkit-details-marker {
+      display: none;
+    }
+  </style>
+  <body>
+    <header class="container">
+      <div class="leftHeader">
+        <div>
+          <div class="hamburgerr-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="hamburgerr">
+          <h2>It was just for style)</h2>
+        </div>
+        <img
+          width="114"
+          src="/uploads/images/youtube-logo.svg"
+          style="cursor: pointer"
+          alt="logo" />
+      </div>
+      <div class="middleHeader">
+        <div class="search">
+          <input
+            id="mainSearch"
+            type="text"
+            class="search__input"
+            placeholder="Search" />
+          <i class="fa-regular fa-keyboard" style="margin-right: 5px"></i>
+          <button class="search__button">
+            <i class="fa-solid search__icon fa-magnifying-glass fa-xl"></i>
+          </button>
+        </div>
+        <i class="fa-solid fa-microphone fa-lg micro"></i>
+      </div>
+      <nav class="profileNav">
+        <a href="http://localhost:8888/videos/postVideo" class="postVideoBtn">
+          Post Video
+          <i
+            class="fa-solid fa-video"
+            style="margin-bottom: 30px; margin-right: 20px">
+          </i>
+        </a>
+        <p class="notification">
+          <i
+            class="fa-regular fa-bell"
+            style="margin-bottom: 30px; margin-right: 20px"></i>
+          <span class="badge">8</span>
+        </p>
+        <div class="menu-btn">
+          <img
+            class="avatar"
+            width="40"
+            height="40"
+            src="/uploads/<%= avatar%>"
+            alt="avatar" />
+        </div>
+      </nav>
+
+      <div class="menu">
+        <div class="profile">
+          <img
+            class="avatar"
+            width="45"
+            height="45"
+            src="/uploads/<%= avatar%>"
+            alt="avatar" />
+          <div>
+            <h3><%= username%></h3>
+          </div>
+        </div>
+        <form action="/videos/personalPosts" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-brands fa-youtube"></i>&nbsp;Personal Posts
+          </button>
+        </form>
+        <form action="/archive" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-regular fa-folder-open"></i>&nbsp;Archive
+          </button>
+        </form>
+        <form action="/changeAvatar" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-solid fa-user-tie"></i>&nbsp;Change Avatar
+          </button>
+        </form>
+        <form action="/logout" method="get">
+          <button class="Btn" type="submit">
+            <div class="sign">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+              </svg>
+            </div>
+
+            <div class="text">Logout</div>
+          </button>
+        </form>
+      </div>
+    </header>
+    <main class="container">
+      <div class="recommendations">
+        <button class="button-28">Все</button>
+        <button class="button-28">Сейчас в эфире</button>
+        <button class="button-28">Джемы</button>
+        <button class="button-28">Музыка</button>
+        <button class="button-28">Скетч-шоу</button>
+        <button class="button-28">Математика</button>
+        <button class="button-28">Недавно опубликованные</button>
+        <button class="button-28">Просмотрено</button>
+        <button class="button-28">Новое для вас</button>
+      </div>
+      <div class="container">
+        <div class="sidebar">
+          <ul>
+            <li>
+              <i class="fa-solid fa-house fa-xl"></i>
+              <span>Главная</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-film fa-xl"></i>
+              <span>Shorts</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-photo-film fa-xl"></i>
+              <span>Подписки</span>
+            </li>
+            <li>
+              <i class="fa-brands fa-square-youtube fa-xl"></i>
+              <span>Библиотека</span>
+            </li>
+          </ul>
+        </div>
+        <div class="videosContainer">
+          <%randomPosts.map(el => { %>
+          <a
+            href="http://localhost:8888/videos/exactVideo/<%= el.id%>"
+            method="get">
+            <div class="videos">
+              <!-- a video starts -->
+              <div class="video">
+                <div class="thumbnail">
+                  <video muted autoplay loop class="vid" width="280">
+                    <source src="/uploads/<%= el.video%>" type="video/mp4" />
+                    Your browser does not support HTML video.
+                  </video>
+                </div>
+                <div class="details">
+                  <div class="author">
+                    <img src="/uploads/<%= el.userAvatar%>" alt="" />
+                  </div>
+                  <div class="title">
+                    <h3><%= el.title%></h3>
+                    <a href=""><%= el.username%></a>
+                    <span>
+                      <%= Math.floor(Math.random() * (1000 - 100 + 1) + 100) %>K
+                      Views • <%= Math.floor(Math.random() * (10 - 1 + 1) + 1)
+                      %> Months Ago
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- a video Ends -->
+            </div>
+          </a>
+          <%}) %>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    let menuBtn = document.querySelector(".menu-btn");
+    let menu = document.querySelector(".menu");
+
+    menuBtn.addEventListener("click", function () {
+      menuBtn.classList.toggle("active");
+      menu.classList.toggle("active");
+    });
+
+    let hamburgerrBtn = document.querySelector(".hamburgerr-btn");
+    let hamburgerr = document.querySelector(".hamburgerr");
+
+    hamburgerrBtn.addEventListener("click", function () {
+      hamburgerrBtn.classList.toggle("active");
+      hamburgerr.classList.toggle("active");
+    });
+
+    let clip = document.querySelector(".vid");
+
+    clip.addEventListener("mouseover", function (e) {
+      clip.play();
+    });
+
+    clip.addEventListener("mouseout", function (e) {
+      clip.pause();
+    });
+  </script>
+</html>

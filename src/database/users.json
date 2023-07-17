@@ -1,0 +1,65 @@
+[
+  {
+    "id": "5cda6181-5c51-4819-a91d-a05e51ecd740",
+    "username": "Umar",
+    "password": "$2b$12$KrnmIIijA3OUWuEeXarWmeqo5rKFJMcbrehnoyhCdBwTAAsCHt4Ji",
+    "avatar": "ea29ebe2-ba3e-477b-94d4-a8b030aa56b5.jpeg",
+    "followers": 2
+  },
+  {
+    "id": "fedf2523-9f4f-4d17-99c4-d3850d494e93",
+    "username": "Umarbek",
+    "password": "$2b$12$FWzeBUQxO6SqJrcKnRjU8ev37NJhlGUxQxr9gkEUKTcRZXu9OfhEy",
+    "avatar": "5627037e-d887-4cae-b275-abc35092c3e7.jpeg",
+    "followers": 3
+  },
+  {
+    "id": "e2a43964-237b-4a9a-8247-31b66e26e4c3",
+    "username": "NiggaBlogger",
+    "password": "$2b$12$OrCPWkAHHyX.r4GW..XQJeyIz70DJLGObBwhhLQ/V9/oQDVDqUg5W",
+    "avatar": "1f08941f-08f6-4a44-9ef1-b037e9520ea9.jpeg",
+    "followers": 1
+  },
+  {
+    "id": "e02ce7d9-f798-4c9a-9e2e-942df240e825",
+    "username": "MrArtist",
+    "password": "$2b$12$Oza9/pMri29WFY7f9c.oYeJpA1nqpFWR4AZZrTypiUCPdQtVt7x8m",
+    "avatar": "61e98496-083c-4c44-8734-68fc42fec563.jpeg",
+    "followers": 0
+  },
+  {
+    "id": "f07743d8-0ad0-4a6c-bc2d-d00bb6933904",
+    "username": "CameraMan",
+    "password": "$2b$12$OifxlqZYDMwsiIGmCzDLMuHeEEVxe4mK58zK2DS9PBPys14X5f1Z2",
+    "avatar": "23a023dd-f53f-4f85-bbd2-92fd7b3e160c.jpeg",
+    "followers": 2
+  },
+  {
+    "id": "8c45abd9-9f1e-42da-b8fe-89acfd4a0ea5",
+    "username": "Ahmed Nashed",
+    "password": "$2b$12$lAVl85rG4XNLKQyA5P52oelC3rhh0.YnE8Bska7UuZABzzUvBxX3G",
+    "avatar": "b9a6740b-60a8-4d79-a1ee-af47030f193e.jpeg",
+    "followers": 2
+  },
+  {
+    "id": "3e75466a-b37a-4db3-89e6-38e239a9e612",
+    "username": "LeBron James",
+    "password": "$2b$12$JTrGJtjw/kZFY3e9kjz04OEKqWQvh4Bb6DDAnsmtZR74GQd/qhAOy",
+    "avatar": "be294c2b-e1f4-4481-8a78-537480c96e85.jpeg",
+    "followers": 0
+  },
+  {
+    "id": "08414749-f893-4109-9526-e231ab3da267",
+    "username": "Hacker",
+    "password": "$2b$12$DLDhjvHfr.BqRmH9VvFpZOaNdgWN.s7KjTwnTAwFlW.PgKbC9sQV.",
+    "avatar": "06272e02-d072-429b-9fac-7e75bf84e30e.jpeg",
+    "followers": 1
+  },
+  {
+    "id": "1c7da43e-2976-42d4-ab28-c5a595d3dfe1",
+    "username": "Izzat",
+    "password": "$2b$12$FDdV6ha8NOZiK9BCqNf6z.N0kmckNy.HOGKo5dIyZq60lnGUiS77G",
+    "avatar": "b1ec7dd8-4efa-4fac-86a4-2a34e09a37a8.jpeg",
+    "followers": 0
+  }
+]

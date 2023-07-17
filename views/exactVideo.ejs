@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/images/title.png" />
+    <link
+      href="https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css"
+      rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/23e4f9af49.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    @import url("https://fonts.cdnfonts.com/css/youtube-sans");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style-type: none;
+      font-family: "YouTube Sans", sans-serif;
+    }
+    .container {
+      margin: 0 auto;
+      padding: 0;
+      max-width: 1540px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+    }
+    .label-check {
+      display: none;
+    }
+
+    .hamburgerr {
+      margin: 5px 0 0 20px;
+    }
+
+    .hamburger-label {
+      width: 40px;
+      height: 22.5px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .hamburger-label div {
+      width: 25px;
+      height: 2px;
+      background-color: #282828;
+      position: absolute;
+    }
+
+    .line2 {
+      margin: 8px 0 0 0;
+    }
+
+    .line3 {
+      margin: 16px 0 0 0;
+    }
+
+    /* Hamburger Icon */
+    .menu-btn {
+      color: #282828;
+      margin-top: 7px;
+      margin-right: 10px;
+      width: 70px;
+      height: 80px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* Меняем гамбургер иконку, когда меню открыто */
+    .menu-btn.active span:nth-of-type(1) {
+      display: none;
+    }
+    .menu-btn.active span:nth-of-type(2) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(45deg);
+    }
+    .menu-btn.active span:nth-of-type(3) {
+      top: 50%;
+      transform: translate(-50%, 0%) rotate(-45deg);
+    }
+
+    /* Menu which appears onclick */
+    .menu {
+      z-index: 30;
+      color: #282828;
+      position: fixed;
+      top: 20px;
+      right: 70px;
+      width: 15%;
+      height: 40%;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.1);
+      background: #fff;
+      transform: translateX(150%);
+      transition: transform 0.5s;
+    }
+    @media (max-width: 1200px) {
+      .menu {
+        width: 20%;
+        height: 35%;
+      }
+    }
+    @media (max-width: 1000px) {
+      .menu {
+        width: 25%;
+        height: 40%;
+      }
+    }
+    @media (max-width: 700px) {
+      .menu {
+        width: 30%;
+        height: 45%;
+      }
+    }
+    @media (max-width: 550px) {
+      .menu {
+        width: 35%;
+        height: 50%;
+      }
+    }
+    @media (max-width: 500px) {
+      .menu {
+        top: 10px;
+        right: 20px;
+        width: 40%;
+        height: 52%;
+      }
+    }
+    .menu.active {
+      transform: translateX(0);
+    }
+
+    .menu li {
+      list-style-type: none;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .button-17 {
+      align-items: center;
+      appearance: none;
+      background-color: #fff;
+      border-radius: 24px;
+      border-style: none;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+      box-sizing: border-box;
+      color: #3c4043;
+      cursor: pointer;
+      display: inline-flex;
+      fill: currentcolor;
+      font-family: "Google Sans", Roboto, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      height: 36px;
+      justify-content: center;
+      letter-spacing: 0.25px;
+      line-height: normal;
+      max-width: 100%;
+      overflow: visible;
+      padding: 2px 20px;
+      position: relative;
+      text-align: center;
+      text-transform: none;
+      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: auto;
+      will-change: transform, opacity;
+      z-index: 0;
+    }
+
+    .logout:hover {
+      background: #f6f9fe;
+      color: #ff0000;
+    }
+
+    .changeAvatar:hover {
+      color: #4285f4;
+    }
+
+    .button-17:active {
+      box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+        0 8px 12px 6px rgb(60 64 67 / 15%);
+      outline: none;
+    }
+
+    .button-17:focus {
+      outline: none;
+      border: 2px solid #4285f4;
+    }
+
+    .button-17:not(:disabled) {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):hover {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
+    }
+
+    .button-17:not(:disabled):focus {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+    }
+
+    .button-17:not(:disabled):active {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+        rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
+    }
+
+    .button-17:disabled {
+      box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+        rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
+    }
+    .logout,
+    .changeAvatar {
+      margin-top: 10px;
+      padding-left: 10px;
+      width: max-content;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .leftHeader {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .search {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .search__input {
+      font-family: inherit;
+      font-size: inherit;
+      background-color: #f4f2f2;
+      border: 1px solid #646464;
+      color: #646464;
+      padding: 0.7rem 1rem;
+      border-radius: 30px;
+      width: 40em;
+      transition: all ease-in-out 0.5s;
+      margin-right: -4.5rem;
+    }
+
+    .search__input:hover,
+    .search__input:focus {
+      box-shadow: 0 0 1em #00000013;
+    }
+
+    .search__input:focus {
+      outline: none;
+      background-color: #f0eeee;
+    }
+
+    .search__input::-webkit-input-placeholder {
+      color: #646464;
+      font-weight: 100;
+    }
+
+    .search__input:focus + .search__button {
+      background-color: #f0eeee;
+    }
+
+    .search__button {
+      padding-left: 10px;
+      height: 44px;
+      border-bottom: #fff;
+      border-right: #fff;
+      border-top: #fff;
+      background-color: #f4f2f2;
+    }
+
+    .search__button:hover {
+      opacity: 0.7;
+    }
+
+    .search__button:hover {
+      cursor: pointer;
+    }
+
+    .search__icon {
+      height: 0.6em;
+      width: 0.6em;
+    }
+
+    .middleHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .micro {
+      margin-bottom: 25px;
+    }
+    .notification {
+      margin-bottom: 3px;
+      background-color: transparent;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .notification .badge {
+      position: absolute;
+      font-size: 9px;
+      top: -2px;
+      right: 11px;
+      padding: 1px 6px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+    }
+
+    .profileNav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .mainContainer {
+      margin: 0 auto;
+      max-width: 1540px;
+      padding: -10px 20px 20px -10px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .videos {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .video {
+      margin-bottom: 30px;
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: 160px;
+    }
+
+    .author img {
+      object-fit: cover;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      margin-right: 10px;
+    }
+    .details {
+      display: flex;
+    }
+
+    .title,
+    .exacTitle {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title h3 {
+      color: rgb(3, 3, 3);
+      line-height: 18px;
+      font-size: 14px;
+      margin-bottom: 6px;
+      max-width: 220px;
+    }
+
+    .exacTitle {
+      color: rgb(3, 3, 3);
+      line-height: 18px;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .exacTitle h1 {
+      margin-top: 10px;
+    }
+
+    .title a,
+    .exacTitle a,
+    span {
+      text-decoration: none;
+      color: rgb(96, 96, 96);
+      font-size: 12px;
+    }
+
+    .postVideoBtn {
+      margin-bottom: 3px;
+      color: #282828;
+    }
+    .vid {
+      border-radius: 10px;
+    }
+    .scrollBar {
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      width: 300px;
+      height: 800px;
+    }
+    .videosContainer {
+      display: flex;
+      /* float: inline-start; */
+      justify-content: center;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 2px;
+    }
+    .scrollBar::-webkit-scrollbar {
+      display: none;
+    }
+    .belowTitle {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .realVideo {
+      width: 1070px;
+      height: 600px;
+    }
+
+    @media (max-width: 1200px) {
+      .realVideo {
+        width: 900px;
+        height: 550px;
+      }
+    }
+    .button-81 {
+      border: 0 solid #e2e8f0;
+      border-radius: 1.5rem;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: inline-block;
+      font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      margin-left: 15px;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      text-decoration: none #0d172a solid;
+      text-decoration-thickness: auto;
+      transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .Subscribe {
+      background-color: #282828;
+      color: #d8d7d7;
+      padding: 0.5rem 1.6rem 0.5rem 0.7rem;
+    }
+
+    .Subscribed {
+      color: #282828;
+      background-color: #d8d7d7;
+    }
+
+    .button-81:hover {
+      opacity: 0.8;
+    }
+
+    .buttonsLike {
+      width: 1060px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .likeButtons:hover {
+      opacity: 0.8;
+    }
+
+    .likeButtons {
+      display: flex;
+      flex-direction: row;
+      gap: 1px;
+      justify-content: space-around;
+      align-items: center;
+      padding: 2px;
+      height: 31.5px;
+      width: 130px;
+      border-radius: 12px;
+      background: #d8d7d7;
+    }
+
+    .containerLike input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .containerLike {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    svg {
+      position: relative;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      transition: all 0.3s;
+    }
+
+    svg:hover {
+      transform: scale(1.1) rotate(-10deg);
+    }
+
+    .likeBor {
+      fill: #2196f3;
+    }
+
+    .likeYoq {
+      fill: #666;
+    }
+
+    .dislikeBor {
+      fill: #ff0000;
+    }
+
+    .dislikeYoq {
+      fill: #666;
+    }
+
+    .dislikeLabel {
+      border-left: 1px solid #000;
+    }
+    .prosmotrs {
+      margin-top: 15px;
+      border-radius: 12px;
+      width: 100%;
+      height: 70px;
+      background: #d8d7d7;
+    }
+    .prosmotrs h4 {
+      margin-left: 20px;
+      padding-top: 10px;
+    }
+    .prosmotrs h5 {
+      margin-top: 5px;
+      margin-left: 25px;
+    }
+
+    .prosmotrs:hover {
+      opacity: 0.8;
+    }
+    .Btn {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition-duration: 0.3s;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+      background-color: rgb(255, 65, 65);
+    }
+
+    /* plus sign */
+    .sign {
+      width: 100%;
+      transition-duration: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sign svg {
+      width: 17px;
+    }
+
+    .sign svg path {
+      fill: white;
+    }
+    /* text */
+    .text {
+      position: absolute;
+      right: 0%;
+      width: 0%;
+      opacity: 0;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 600;
+      transition-duration: 0.3s;
+    }
+    /* hover effect on button width */
+    .Btn:hover {
+      width: 125px;
+      border-radius: 40px;
+      transition-duration: 0.3s;
+    }
+
+    .Btn:hover .sign {
+      width: 30%;
+      transition-duration: 0.3s;
+      padding-left: 20px;
+    }
+    /* hover effect button's text */
+    .Btn:hover .text {
+      opacity: 1;
+      width: 70%;
+      transition-duration: 0.3s;
+      padding-right: 10px;
+    }
+    /* button click effect*/
+    .Btn:active {
+      transform: translate(2px, 2px);
+    }
+  </style>
+  <body>
+    <header class="container">
+      <div class="leftHeader">
+        <div class="hamburgerr">
+          <input class="label-check" id="label-check" type="checkbox" />
+          <label for="label-check" class="hamburger-label">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+            <label></label
+          ></label>
+        </div>
+        <a href="http://localhost:8888">
+          <img
+            width="114"
+            src="/uploads/images/youtube-logo.svg"
+            style="cursor: pointer"
+            alt="logo" />
+        </a>
+      </div>
+      <div class="middleHeader">
+        <div class="search">
+          <input
+            type="text"
+            class="search__input"
+            placeholder="Введите запрос" />
+          <i class="fa-regular fa-keyboard" style="margin-right: 5px"></i>
+          <button class="search__button">
+            <i class="fa-solid search__icon fa-magnifying-glass fa-xl"></i>
+          </button>
+        </div>
+        <i class="fa-solid fa-microphone fa-lg micro"></i>
+      </div>
+      <nav class="profileNav">
+        <a href="http://localhost:8888/videos/postVideo" class="postVideoBtn">
+          <i
+            class="fa-solid fa-video"
+            style="margin-bottom: 30px; margin-right: 20px">
+          </i>
+        </a>
+        <p class="notification">
+          <i
+            class="fa-regular fa-bell"
+            style="margin-bottom: 30px; margin-right: 20px"></i>
+          <span class="badge">8</span>
+        </p>
+        <div class="menu-btn">
+          <img
+            class="avatar"
+            width="40"
+            height="40"
+            src="/uploads/<%= avatar%>"
+            alt="avatar" />
+        </div>
+      </nav>
+
+      <div class="menu">
+        <div class="profile">
+          <img
+            class="avatar"
+            width="45"
+            height="45"
+            src="/uploads/<%= avatar%>"
+            alt="avatar" />
+          <div>
+            <h3><%= username%></h3>
+          </div>
+        </div>
+        <form action="/videos/personalPosts" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-brands fa-youtube"></i>&nbsp;Personal Posts
+          </button>
+        </form>
+        <form action="/videos/likedVideos" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-regular fa-thumbs-up"></i>&nbsp;Liked Posts
+          </button>
+        </form>
+        <form action="/archive" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-regular fa-folder-open"></i>&nbsp;Archive
+          </button>
+        </form>
+        <form action="/changeAvatar" method="get">
+          <button type="submit" class="button-17 changeAvatar">
+            &nbsp;&nbsp;<i class="fa-solid fa-user-tie"></i>&nbsp;Change Avatar
+          </button>
+        </form>
+        <form action="/logout" method="get">
+          <button class="Btn" type="submit">
+            <div class="sign">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+              </svg>
+            </div>
+
+            <div class="text">Logout</div>
+          </button>
+        </form>
+      </div>
+    </header>
+    <main class="mainContainer">
+      <div class="exactVideo">
+        <video class="realVideo" controls>
+          <source
+            src="/uploads/<%= exactVideo%>"
+            id="myVideo"
+            type="video/mp4" />
+          Your browser does not support HTML video.
+        </video>
+        <div class="details">
+          <div class="author">
+            <div class="exacTitle">
+              <h1><%= exactTitle%></h1>
+              <div class="buttonsLike">
+                <div class="belowTitle">
+                  <img src="/uploads/<%= exactUserAvatar%>" alt="avatar" />
+                  <div>
+                    <h2>
+                      <%= exactUsername%>&nbsp;<i
+                        class="fa-solid fa-circle-check fa-2xs"
+                        style="color: gray; position: relative; top: 1px"></i>
+                    </h2>
+                    <span> <%= followers%> Subscribers </span>
+                  </div>
+                  <form action="/users/subscribe/<%= exactId%>" method="post">
+                    <button class="button-81 <%= followText%>" type="submit">
+                      <i class="fa-solid fa-bell" style="color: #282828"></i>
+                      &nbsp;<%= followText%>
+                    </button>
+                  </form>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                  <div class="likeButtons">
+                    <form action="/videos/likes/<%= exactId%>" method="post">
+                      <button
+                        type="submit"
+                        style="
+                          background-color: transparent;
+                          border: none;
+                          cursor: pointer;
+                        ">
+                        <label class="containerLike">
+                          <input type="checkbox" />
+                          <svg
+                            class="<%= likeText%>"
+                            id="Glyph"
+                            version="1.1"
+                            viewBox="0 0 32 32"
+                            xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path
+                              d="M29.845,17.099l-2.489,8.725C26.989,27.105,25.804,28,24.473,28H11c-0.553,0-1-0.448-1-1V13  c0-0.215,0.069-0.425,0.198-0.597l5.392-7.24C16.188,4.414,17.05,4,17.974,4C19.643,4,21,5.357,21,7.026V12h5.002  c1.265,0,2.427,0.579,3.188,1.589C29.954,14.601,30.192,15.88,29.845,17.099z"
+                              id="XMLID_254_"></path>
+                            <path
+                              d="M7,12H3c-0.553,0-1,0.448-1,1v14c0,0.552,0.447,1,1,1h4c0.553,0,1-0.448,1-1V13C8,12.448,7.553,12,7,12z   M5,25.5c-0.828,0-1.5-0.672-1.5-1.5c0-0.828,0.672-1.5,1.5-1.5c0.828,0,1.5,0.672,1.5,1.5C6.5,24.828,5.828,25.5,5,25.5z"
+                              id="XMLID_256_"></path>
+                          </svg>
+                          <%= likes%>
+                        </label>
+                      </button>
+                    </form>
+                    <form action="/videos/dislikes/<%= exactId%>" method="post">
+                      <button
+                        type="submit"
+                        style="
+                          background-color: transparent;
+                          border: none;
+                          cursor: pointer;
+                        ">
+                        <label class="containerLike dislikeLabel">
+                          <input type="checkbox" />
+                          <svg
+                            class="<%= dislikeText%>"
+                            id="Glyph"
+                            version="1.1"
+                            viewBox="0 0 27 30"
+                            xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path
+                              d="M2.156,14.901l2.489-8.725C5.012,4.895,6.197,4,7.528,4h13.473C21.554,4,22,4.448,22,5v14  c0,0.215-0.068,0.425-0.197,0.597l-5.392,7.24C15.813,27.586,14.951,28,14.027,28c-1.669,0-3.026-1.357-3.026-3.026V20H5.999  c-1.265,0-2.427-0.579-3.188-1.589C2.047,17.399,1.809,16.12,2.156,14.901z"
+                              id="XMLID_259_"></path>
+                            <path
+                              d="M25.001,20h4C29.554,20,30,19.552,30,19V5c0-0.552-0.446-1-0.999-1h-4c-0.553,0-1,0.448-1,1v14  C24.001,19.552,24.448,20,25.001,20z M27.001,6.5c0.828,0,1.5,0.672,1.5,1.5c0,0.828-0.672,1.5-1.5,1.5c-0.828,0-1.5-0.672-1.5-1.5  C25.501,7.172,26.173,6.5,27.001,6.5z"
+                              id="XMLID_260_"></path>
+                          </svg>
+                          <%= dislikes%>
+                        </label>
+                      </button>
+                    </form>
+                  </div>
+
+                  <button
+                    onclick="shareVideo()"
+                    class="button-81"
+                    type="button"
+                    style="background-color: #d8d7d7; color: #000">
+                    <i class="fa-solid fa-share fa-xs" style="color: #000"></i
+                    >&nbsp; Share
+                  </button>
+                  <a href="/uploads/<%= exactVideo%>" download>
+                    <button
+                      class="button-81"
+                      type="button"
+                      style="background-color: #d8d7d7; color: #000">
+                      <i class="fa-solid fa-download" style="color: #000"></i
+                      >&nbsp; Download
+                    </button>
+                  </a>
+                  <button
+                    class="button-81"
+                    type="button"
+                    style="
+                      background-color: #d8d7d7;
+                      color: #000;
+                      text-align: center;
+                    ">
+                    <i class="fa-solid fa-ellipsis"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="prosmotrs">
+          <h4>
+            <%= exactViews%> Views • <%= Math.floor(Math.random() * (10 - 1 + 1)
+            + 1) %> Months Ago
+          </h4>
+          <h5>Show More...</h5>
+        </div>
+      </div>
+      <div class="scrollBar">
+        <div class="videosContainer">
+          <%randomPosts.map(el => { %>
+          <a
+            href="http://localhost:8888/videos/exactVideo/<%= el.id%>"
+            method="get">
+            <div class="videos">
+              <!-- a video starts -->
+              <div class="video">
+                <div class="thumbnail">
+                  <video muted loop class="vid" width="280">
+                    <source src="/uploads/<%= el.video%>" type="video/mp4" />
+                    Your browser does not support HTML video.
+                  </video>
+                </div>
+
+                <div class="details">
+                  <div class="author">
+                    <img src="/uploads/<%= el.userAvatar%>" alt="" />
+                  </div>
+                  <div class="title">
+                    <h3><%= el.title%></h3>
+                    <a href=""><%= el.username%></a>
+                    <span>
+                      <%= Math.floor(Math.random() * (1000 - 100 + 1) + 100) %>K
+                      Views • <%= Math.floor(Math.random() * (10 - 1 + 1) + 1)
+                      %> Months Ago
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- a video Ends -->
+            </div>
+          </a>
+          <%}) %>
+        </div>
+      </div>
+    </main>
+    <script>
+      let menuBtn = document.querySelector(".menu-btn");
+      let menu = document.querySelector(".menu");
+
+      menuBtn.addEventListener("click", function () {
+        menuBtn.classList.toggle("active");
+        menu.classList.toggle("active");
+      });
+
+      function shareVideo() {
+        // Get the video URL
+        var videoUrl = document.getElementById("myVideo").src;
+
+        // Create the share URL for Telegram
+        var telegramUrl =
+          "https://telegram.me/share/url?url=" + encodeURIComponent(videoUrl);
+
+        // Open the share URLs in new tabs
+        window.open(telegramUrl);
+      }
+    </script>
+  </body>
+</html>

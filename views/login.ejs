@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/images/title.png">
+    <script
+      src="https://kit.fontawesome.com/23e4f9af49.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    @import url("https://fonts.cdnfonts.com/css/youtube-sans");
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #d4cdcd;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      font-family: "YouTube Sans", sans-serif;
+      opacity: 0.95;
+    }
+
+    form {
+      width: 450px;
+      min-height: 500px;
+      height: auto;
+      border-radius: 5px;
+      margin: 2% auto;
+      box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+      padding: 2%;
+      background-image: linear-gradient(-225deg, #282828 50%, #ff0000 50%);
+    }
+
+    p {
+      color: whitesmoke;
+    }
+    @media (max-width: 330px) {
+      p {
+        width: 200px;
+      }
+    }
+    form .con {
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-justify-content: space-around;
+      justify-content: space-around;
+
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+
+      margin: 0 auto;
+    }
+
+    header {
+      margin: 2% auto 10% auto;
+      text-align: center;
+    }
+    header h2 {
+      font-size: 250%;
+      font-family: "Playfair Display", serif;
+      color: white;
+    }
+    header p {
+      letter-spacing: 0.05em;
+    }
+
+    .userIcon,
+    .keyIcon {
+      background: #fff;
+      color: #333;
+      border-radius: 5px 0px 0px 5px;
+    }
+    .userIcon {
+      padding: 13px 0px 16px 9px;
+    }
+    .keyIcon {
+      padding: 12px 0px 16px 9px;
+    }
+
+    #eye {
+      background: #fff;
+      color: #333;
+
+      margin: 5.9px 0 0 0;
+      margin-left: -20px;
+      padding: 15px 9px 19px 0px;
+      border-radius: 0px 5px 5px 0px;
+
+      float: right;
+      position: relative;
+      right: 1%;
+      top: -0.2%;
+      z-index: 5;
+
+      cursor: pointer;
+    }
+    input[class="form-input"] {
+      width: 240px;
+      height: 50px;
+
+      margin-top: 2%;
+      padding: 15px;
+
+      font-size: 16px;
+      font-family: "Abel", sans-serif;
+      color: #5e6472;
+
+      outline: none;
+      border: none;
+
+      border-radius: 0px 5px 5px 0px;
+      transition: 0.2s linear;
+    }
+    input[id="txt-input"] {
+      width: 250px;
+    }
+    input:focus {
+      transform: translateX(-2px);
+      border-radius: 5px;
+    }
+
+    button {
+      display: inline-block;
+      color: #252537;
+
+      width: 280px;
+      height: 50px;
+
+      padding: 0 20px;
+      background: #fff;
+      border-radius: 5px;
+
+      outline: none;
+      border: none;
+
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s linear;
+
+      margin: 7% auto;
+      letter-spacing: 0.05em;
+    }
+    a {
+      width: 100%;
+    }
+    .submits {
+      width: 100%;
+      float: left;
+      margin-left: 2%;
+    }
+
+    .frgt-pass {
+      margin-top: 15px;
+      padding-left: 33px;
+      background: transparent;
+      color: #ccdcd9;
+    }
+
+    .sign-up {
+      background: #ccdcd9;
+    }
+
+    .sign-up:hover {
+      transform: translatey(3px);
+      box-shadow: none;
+    }
+
+    .sign-up:hover {
+      animation: ani9 0.4s ease-in-out infinite alternate;
+    }
+
+    .log-in {
+      font-size: 20px;
+    }
+
+    .other {
+      margin-right: 3px;
+      margin-top: 70px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .button-48 {
+      appearance: none;
+      background-color: #fff;
+      border-width: 0;
+      box-sizing: border-box;
+      color: #000000;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Clarkson, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1em;
+      margin: 15px 0 0 0;
+      opacity: 1;
+      outline: 0;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      text-rendering: geometricprecision;
+      text-transform: uppercase;
+      transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1),
+        background-color 100ms cubic-bezier(0.694, 0, 0.335, 1),
+        color 100ms cubic-bezier(0.694, 0, 0.335, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      white-space: nowrap;
+    }
+
+    .button-48:before {
+      animation: opacityFallbackOut 0.5s step-end forwards;
+      backface-visibility: hidden;
+      background-color: #282828;
+      border-radius: 10px;
+      clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform: translateZ(0);
+      transition: clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+        -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      width: 100%;
+    }
+
+    .button-48:hover:before {
+      animation: opacityFallbackIn 0s step-start forwards;
+      clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+    }
+    .button-48:hover{
+      color: #ff0000;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .button-48:after {
+      background-color: #fff;
+    }
+
+    .button-48 span {
+      z-index: 1;
+      position: relative;
+    }
+  </style>
+  <body>
+    <div>
+      <img
+        src="../uploads/images/youtube-logo.svg"
+        width="250"
+        alt="youtube-logo" />
+    </div>
+    <div class="overlay">
+      <form action="/auth/login" method="post">
+        <div class="con">
+          <header class="head-form">
+            <h2>Log In</h2>
+            <p>login here using your username and password</p>
+          </header>
+          <br />
+          <div class="field-set">
+            <span class="userIcon">
+              <i class="fa fa-user-circle"></i>
+            </span>
+            <input
+              class="form-input"
+              id="txt-input"
+              type="text"
+              placeholder="UserName"
+              name="username"
+              required />
+
+            <br />
+
+            <span class="keyIcon">
+              <i class="fa fa-key"></i>
+            </span>
+            <input
+              class="form-input"
+              type="password"
+              placeholder="Password"
+              id="pwd"
+              name="password"
+              required />
+
+            <span>
+              <i
+                class="fa fa-eye"
+                aria-hidden="true"
+                type="button"
+                id="eye"></i>
+            </span>
+
+            <br />
+
+            <button class="button-48" type="submit">
+              <span class="text">Log In</span>
+            </button>
+          </div>
+
+          <div class="other">
+            <span class="btn submits frgt-pass"
+              >No Account?<strong style="color: transparent"
+                >aaaaaa</strong
+              ></span
+            >
+            <a href="http://localhost:8888/auth/register">
+              <button class="btn submits sign-up" type="button">
+                Sign Up
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+              </button>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script>
+      function show() {
+        var p = document.getElementById("pwd");
+        p.setAttribute("type", "text");
+      }
+
+      function hide() {
+        var p = document.getElementById("pwd");
+        p.setAttribute("type", "password");
+      }
+
+      var pwShown = 0;
+
+      document.getElementById("eye").addEventListener(
+        "click",
+        function () {
+          if (pwShown == 0) {
+            pwShown = 1;
+            show();
+          } else {
+            pwShown = 0;
+            hide();
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

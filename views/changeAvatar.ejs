@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/images/title.png">
+    <link rel="stylesheet" href="changeAvatar.css">
+  </head>
+  <body>
+    <img width="50" height="50" src="/uploads/<%= avatar %>" alt="avatar" />
+    <div class="header">
+      <h2>Let's change you profile picture <%= username%></h2>
+      <span>😉</span>
+    </div>
+    <form class="form" action="/changeAvatar" method="post" enctype="multipart/form-data">
+      <span class="form-title">Upload your file</span>
+      <p class="form-paragraph">File should be an image</p>
+      <label for="file-input" class="drop-container">
+        <span class="drop-title">Drop files here</span>
+        or
+        <input
+          type="file"
+          accept="image/*"
+          required
+          id="file-input"
+          name="avatar" />
+      </label>
+      <button type="submit" class="button-86">Edit</button>
+    </form>
+  </body>
+</html>

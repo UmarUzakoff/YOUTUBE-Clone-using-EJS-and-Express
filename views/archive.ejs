@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/images/title.png" />
+    <link rel="stylesheet" href="archive.css">
+    <script
+      src="https://kit.fontawesome.com/23e4f9af49.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <a href="http://localhost:8888/">
+      <button class="button-59" type="button"><i class="fa-solid fa-house-chimney">&nbsp;Home</i></button>
+    </a>
+    <div class="videosContainer">
+      <%archiveForExactUser.map(el => { %>
+      <div class="videos">
+        <div class="video">
+          <div class="thumbnail">
+            <video muted autoplay loop class="vid" controls width="370">
+              <source src="/uploads/<%= el.video%>" type="video/mp4" />
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <div class="details">
+            <div class="author">
+              <img src="/uploads/<%= el.userAvatar%>" alt="" />
+            </div>
+            <div class="title">
+              <h3><%= el.title%></h3>
+              <a href=""><%= el.username%></a>
+              <span> 2M Views • 3 Months Ago </span>
+            </div>
+          </div>
+          <div class="actions">
+            <a
+              class="delete"
+              href="http://localhost:8888/archive/deleteForever/<%= el.id%>">
+              <i class="fa-solid fa-trash fa-sm" style="color: #720333"></i>
+              Delete Forever
+            </a>
+          </div>
+        </div>
+      </div>
+      <%}) %>
+    </div>
+  </body>
+</html>

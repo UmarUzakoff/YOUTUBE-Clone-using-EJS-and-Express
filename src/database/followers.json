@@ -1,0 +1,46 @@
+[
+  {
+    "user_id": "e2a43964-237b-4a9a-8247-31b66e26e4c3",
+    "userWhoGotSubscribed": "fedf2523-9f4f-4d17-99c4-d3850d494e93"
+  },
+  {
+    "user_id": "5cda6181-5c51-4819-a91d-a05e51ecd740",
+    "userWhoGotSubscribed": "fedf2523-9f4f-4d17-99c4-d3850d494e93"
+  },
+  {
+    "user_id": "5cda6181-5c51-4819-a91d-a05e51ecd740",
+    "userWhoGotSubscribed": "5cda6181-5c51-4819-a91d-a05e51ecd740"
+  },
+  {
+    "user_id": "5cda6181-5c51-4819-a91d-a05e51ecd740",
+    "userWhoGotSubscribed": "f07743d8-0ad0-4a6c-bc2d-d00bb6933904"
+  },
+  {
+    "user_id": "fedf2523-9f4f-4d17-99c4-d3850d494e93",
+    "userWhoGotSubscribed": "f07743d8-0ad0-4a6c-bc2d-d00bb6933904"
+  },
+  {
+    "user_id": "fedf2523-9f4f-4d17-99c4-d3850d494e93",
+    "userWhoGotSubscribed": "5cda6181-5c51-4819-a91d-a05e51ecd740"
+  },
+  {
+    "user_id": "fedf2523-9f4f-4d17-99c4-d3850d494e93",
+    "userWhoGotSubscribed": "fedf2523-9f4f-4d17-99c4-d3850d494e93"
+  },
+  {
+    "user_id": "fedf2523-9f4f-4d17-99c4-d3850d494e93",
+    "userWhoGotSubscribed": "8c45abd9-9f1e-42da-b8fe-89acfd4a0ea5"
+  },
+  {
+    "user_id": "fedf2523-9f4f-4d17-99c4-d3850d494e93",
+    "userWhoGotSubscribed": "e2a43964-237b-4a9a-8247-31b66e26e4c3"
+  },
+  {
+    "user_id": "3e75466a-b37a-4db3-89e6-38e239a9e612",
+    "userWhoGotSubscribed": "08414749-f893-4109-9526-e231ab3da267"
+  },
+  {
+    "user_id": "5cda6181-5c51-4819-a91d-a05e51ecd740",
+    "userWhoGotSubscribed": "8c45abd9-9f1e-42da-b8fe-89acfd4a0ea5"
+  }
+]

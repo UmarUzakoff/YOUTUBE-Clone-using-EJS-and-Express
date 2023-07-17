@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/images/title.png" />
+    <script
+      src="https://kit.fontawesome.com/23e4f9af49.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    .videos {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .video {
+      width: 270px;
+      margin-bottom: 30px;
+    }
+
+    .author img {
+      object-fit: cover;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      margin-right: 10px;
+    }
+    .details {
+      display: flex;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title h3 {
+      color: rgb(3, 3, 3);
+      line-height: 18px;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .title a,
+    span {
+      text-decoration: none;
+      color: rgb(96, 96, 96);
+      font-size: 12px;
+    }
+
+    .postVideoBtn {
+      margin-bottom: 3px;
+      color: #282828;
+    }
+    .vid {
+      border-radius: 10px;
+    }
+    .videosContainer {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      row-gap: 15px;
+      column-gap: 150px;
+    }
+    .delete {
+      background: transparent;
+      border: none;
+      width: max-content;
+      height: max-content;
+    }
+    .actions {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: start;
+      align-items: flex-start;
+    }
+    .button-59 {
+      align-items: center;
+      background-color: #fff;
+      border: 2px solid #000;
+      box-sizing: border-box;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      fill: #000;
+      font-family: Inter, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      height: 48px;
+      justify-content: center;
+      letter-spacing: -0.8px;
+      line-height: 24px;
+      min-width: 140px;
+      outline: 0;
+      padding: 0 17px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-59:focus {
+      color: #171e29;
+    }
+
+    .button-59:hover {
+      border-color: #ff0000;
+      color: #706e6e;
+      fill: #06f;
+    }
+
+    .button-59:active {
+      border-color: #06f;
+      color: #06f;
+      fill: #06f;
+    }
+
+    @media (min-width: 768px) {
+      .button-59 {
+        min-width: 170px;
+      }
+    }
+    .likeButtons:hover {
+      opacity: 0.8;
+    }
+
+    .likeButtons {
+      display: flex;
+      flex-direction: row;
+      gap: 1px;
+      /* justify-content: space-around;
+      align-items: center; */
+      padding: 2px;
+      height: 31.5px;
+      width: 30px;
+      border-radius: 12px;
+      background: transparent;
+    }
+
+    .containerLike input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .containerLike {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    svg {
+      position: relative;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      transition: all 0.3s;
+    }
+
+    svg:hover {
+      transform: scale(1.1) rotate(-10deg);
+    }
+  </style>
+  <body>
+    <a href="http://localhost:8888/">
+      <button class="button-59" type="button">
+        <i class="fa-solid fa-house-chimney">&nbsp;Home</i>
+      </button>
+    </a>
+    <div class="videosContainer">
+      <%result.map(el => { %>
+      <div class="videos">
+        <div class="video">
+          <div class="thumbnail">
+            <video muted autoplay loop class="vid" controls width="370">
+              <source src="/uploads/<%= el.video%>" type="video/mp4" />
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <div class="details">
+            <div class="author">
+              <img src="/uploads/<%= el.userAvatar%>" alt="avatar" />
+            </div>
+            <div class="title">
+              <h3><%= el.title%></h3>
+              <a href=""><%= el.username%></a>
+              <span style="display: flex;flex-direction: row; gap: 10px; align-items: center;">
+                <%= el.views%> Views •
+                <form action="/videos/likes/<%= el.id%>" method="post">
+                  <button
+                    type="submit"
+                    style="
+                      background-color: transparent;
+                      border: none;
+                      cursor: pointer;
+                    ">
+                    <div class="likeButtons">
+                      <label class="containerLike">
+                        <input type="checkbox" />
+                        <svg
+                          id="Glyph"
+                          version="1.1"
+                          viewBox="0 0 32 32"
+                          xml:space="preserve"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <path
+                            d="M29.845,17.099l-2.489,8.725C26.989,27.105,25.804,28,24.473,28H11c-0.553,0-1-0.448-1-1V13  c0-0.215,0.069-0.425,0.198-0.597l5.392-7.24C16.188,4.414,17.05,4,17.974,4C19.643,4,21,5.357,21,7.026V12h5.002  c1.265,0,2.427,0.579,3.188,1.589C29.954,14.601,30.192,15.88,29.845,17.099z"
+                            id="XMLID_254_"></path>
+                          <path
+                            d="M7,12H3c-0.553,0-1,0.448-1,1v14c0,0.552,0.447,1,1,1h4c0.553,0,1-0.448,1-1V13C8,12.448,7.553,12,7,12z   M5,25.5c-0.828,0-1.5-0.672-1.5-1.5c0-0.828,0.672-1.5,1.5-1.5c0.828,0,1.5,0.672,1.5,1.5C6.5,24.828,5.828,25.5,5,25.5z"
+                            id="XMLID_256_"></path>
+                        </svg>
+                        <%= el.likes%>
+                      </label>
+                    </div>
+                  </button>
+                </form>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%}) %>
+    </div>
+  </body>
+</html>
